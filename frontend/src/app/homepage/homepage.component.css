@@ -1,0 +1,72 @@
+/* Default height for small devices */
+#intro-example {
+    height: 400px;
+}
+
+/* Height for devices larger than 992px */
+@media (min-width: 992px) {
+    #intro-example {
+        height: 600px;
+    }
+}
+.mask {
+    background: rgb(67,180,58);
+    background: linear-gradient(90deg, rgba(67,180,58,1) 0%, rgba(45,46,201,1) 50%, rgba(86,176,72,1) 88%);
+}
+
+.header5{
+    margin-bottom: 30px;
+}
+
+.intro-margin {
+
+}
+.mask{
+    margin-top: 40px;
+    border-radius: 25px;
+    width:100%;
+    position: relative;
+}
+.bebra{
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    position: relative
+}
+.cod{
+    width:60%;
+    height:auto;
+    margin-bottom: 100px;
+
+}
+.textp {
+    width: 38%;
+    font-size:large;
+}
+.cod2{
+    width:50%;
+    height:50%;
+    margin-bottom: 60px;
+    margin-top: 80px;
+    margin-left: -20%;
+    padding: 25px;
+}
+
+.textp2 {
+    width: 38%;
+    font-size:large;
+}
+.p {
+    font-size: x-large;
+    margin-top: 50px;
+
+}
+
+.gg{
+    position: relative;
+    width: 100%;
+}
+.card-header{
+    background-color: rgba(151, 235, 142, 0.882);
+}

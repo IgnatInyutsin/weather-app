@@ -1,0 +1,22 @@
+<div class="course-progress">
+  <h3>{{module.name}}</h3>
+  <div class="tasks-container">
+    <div *ngFor="let task of module.tasks; let i = index">
+    <button type="button" class="btn btn-default btn-circle btn-lg" (click)="getTask(i)">
+                            </button>
+    </div>
+  </div>
+</div>
+
+<div class="card w-100">
+  <h5 class="card-header">{{module.tasks[current].title}}</h5>
+  <div class="card-body">
+    <p class="card-text">{{module.tasks[current].text}}</p>
+    <br>
+    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Ответить"
+    [(ngModel)]="answerOut"
+    [ngClass]="{'bg-success': isTrueAnswer, 'bg-danger': isTrueAnswer == false}">
+    <br>
+    <a class="btn btn-primary" (click)="answer()">Отправить</a>
+  </div>
+</div>

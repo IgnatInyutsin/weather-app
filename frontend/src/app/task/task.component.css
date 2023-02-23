@@ -1,0 +1,66 @@
+.course-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.course-progress {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #36e041;
+  text-align: center;
+  color: white;
+  border-radius: 25px;
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+    background-color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.tasks-container {
+  margin: 0 auto;
+  width: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card {
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
+
+.bg-success {
+  color: white;
+}
+.bg-danger {
+  color: white;
+}

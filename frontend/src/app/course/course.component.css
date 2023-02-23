@@ -1,0 +1,26 @@
+.course-container {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+app-module-on-course {
+  width: 48%;
+}
+.course-progress {
+  margin-top: 100px;
+  margin-bottom: 50px;
+  width: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #36e041;
+  text-align: center;
+  color: white;
+}
+
+@media (max-width: 900px) {
+  app-module-on-course {
+    width: 100%;
+  }
+}
