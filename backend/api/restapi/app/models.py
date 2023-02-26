@@ -3,8 +3,8 @@ from .utils import WindsEnum
 
 
 class WeatherRecord(models.Model):
-    city = models.CharField("Город", editable=False, max_length=170)
-    day = models.DateField("Дата измерения", editable=False)
+    city = models.CharField("Город", max_length=170)
+    day = models.DateField("Дата измерения")
     pressure = models.DecimalField(
         "Атмосферное давление",
         max_digits=4,
