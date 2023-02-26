@@ -23,6 +23,9 @@ class WeatherRecord(models.Model):
         decimal_places=1
     )
 
+    def __str__(self):
+        return f"<Weather for {self.day} in {self.city}>"
+
     class Meta:
         verbose_name = "Погодное измерение"
         verbose_name_plural = "Погодные измерения"
