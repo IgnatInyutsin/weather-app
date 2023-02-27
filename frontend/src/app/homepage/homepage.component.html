@@ -1,87 +1,216 @@
-<header>
-<!-- Background image -->
-<div class="gg"
-id="intro-example"
-class="p-5 text-center bg-image"
-style="width: 100%; background-color: linear-gradient(90deg, rgba(67,180,58,1) 20%, rgba(45,46,201,1) 50%, rgba(86,176,72,1) 88%); height: auto;"
->
-<div class="mask" style="background-color: rgba(95, 233, 79, 0.7); max-width: 1200px; width: 100%">
-  <div class="d-flex justify-content-center align-items-center h-100">
-    <div class="text-white">
-      <h1 class="mb-3">Осваивайте курсы</h1>
-      <h5 class="mb-4">Площадка Самарского Регионального центра<br> для проходения онлайн курсов</h5>
-      <a
-        class="btn btn-outline-light btn-lg m-2"
-        href="courses"
-        target="_blank"
-        role="button"
-      >Смотреть курсы</a
-      >
-    </div>
-  </div>
+<div class="reglog-container">
+<!-- Кнопка-триггер окна регистрации -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;">
+  Регистрация
+</button>
+<!-- Кнопка-триггер окна входв -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+  Вход
+</button>
 </div>
-</div>
-<!-- Background image -->
-</header>
-<body>
-  <div class="card">
-  <div class="bebra">
-    <img src="/assets/logo.png" alt="" class="cod">
-    <div class="textp" style="margin-top: 30px">
-      <h5 style="text-align:center;font-size: larger;">Почему наши курсы лучше?</h5>
-      <ul>
-        <li>Площадка разработана при поддержке Самарского регионального центра для одаренных детей.</li>
-        <li>Курсы разработаны специалистами  и кандидатами наук.</li>
-        <li>Каждый может научиться чему-то новому.</li>
-        <li>Простой и понятный интерфейс.</li>
-        <li>Большое количество тем для курсов</li>
-      </ul>
-    </div>
-  </div>
-  </div>
 
-  <div class="card">
-    <div class="bebra">
-      <img src="https://sun7.userapi.com/sun7-16/s/v1/ig2/eIHUqCfn3ZZXQxewx82VbWc5-gHg_j2DnFEkAkOixlvxGfPykUgCiU2J3PHzq_e13C8o2F8O_nBXZVErNMcS82cu.jpg?size=2560x1707&quality=95&type=album" alt="" class="cod2">
-      <div class="textp2" style="margin-top: 100px">
-        <h3 style="text-align:center; font-size: larger;">Сильнейшие преподователи и авторы курсов</h3>
-        <ul>
-          <h5>Сухаренко Даниил Владимирович</h5>
-          <li>Гений роботехники и информационных технологий</li>
-          <li>Подготовка к соревнованиям и конкурсам</li>
-          <li>Один из сильнейших преподователей информатики Самары</li>
-        </ul>
+<!-- Модальное окно -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Регистрация</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
+            <input type="input" class="form-control" id="exampleNicknameEmail1" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо еще.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword1">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Повторите ваш пароль</label>
+            <input type="password" class="form-control" id="exampleRetypeInputPassword1">
+          </div>
+          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        </form>
       </div>
     </div>
-    </div>
+  </div>
+</div>
 
-    <div class="card">
-      <div class="bebra">
-        <img src="/assets/logo.png" alt="" class="cod2">
-        <div class="textp2" style="margin-top: 100px">
-          <h5 style="text-align:center; font-size: larger;">Большие возможности</h5>
-          <ul>
-            <h5>Развивайтесь с курсами от СРЦОД</h5>
-            <li>Выберите тематику курса</li>
-            <li>Решайте задания и получайте результат решения</li>
-            <h4>Удачи!</h4>
-          </ul>
+<!-- Модальное окно -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel2">Вход</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
+            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
+            <input type="password" class="form-control" id="exampleInputPassword2">
+          </div>
+          <button type="submit" class="btn btn-primary">Войти</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Модальное окно -->
+<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Что надеть 27 марта?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body">
+        Одеть: ..., ..., ..., ...
+      </div>
+    </div>
+  </div>
+</div>
+<div id="map" style="width: 100%; height: 300px; position: relative"></div>
+<div class="row">
+  <div class="col-sm">
+    <div class="card card-col">
+      <div class="card-header">
+        Изменить гардероб
+      </div>
+      <div class="card-body">
+        <div class="btn-group" role="group" aria-label="Basic example" style="margin-bottom: 3vh;">
+          <button type="button" class="btn btn-outline-secondary">Добавить</button>
+          <button type="button" class="btn btn-outline-secondary">Удалить</button>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputURL" class="form-label">Вставьте ссылку на картинку</label>
+          <input type="input" class="form-control" id="exampleInputURL">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputClothName" class="form-label">Название одежды</label>
+          <input type="input" class="form-control" id="exampleInputClothName">
+        </div>
+        <div class="mb-3">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Выберите тип одежды
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Тип 1</a></li>
+              <li><a class="dropdown-item" href="#">Тип 2</a></li>
+              <li><a class="dropdown-item" href="#">Тип 3</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="customRange3" class="form-label">Выберите минимально выносимую температуру в этой одежде при безветренной погоде: 0</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange3">
+        </div>
+        <div class="mb-3">
+          <label for="customRange4" class="form-label">Выберите максимально выносимую температуру в этой одежде при безветренной погоде: 0</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange4">
+        </div>
+      </div>1
+    </div>
+  </div>
+  <div class="col-sm">
+    <div class="card card-col">
+      <div class="card-header">
+        Погода за 7 дней
+      </div>
+      <div class="card-body">
+        <div class="container">
+          <div class="card">
+            <div class="card-header">27 марта</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">28 марта</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">29 марта</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">30 марта</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">31 марта</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">1 апреля</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">2 апреля</div>
+            <div class="card-body">
+              <p>Температура от -3 до 2</p>
+              <p>Влажность 50%</p>
+              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+                Узнать, что стоит надевать
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-</body>
-
-
-<div class="card">
-  <div class="card-header">
-      Основная информация
-  </div>
-  <div class="card-body">
-      <h4 class="card-title">Контакный телефон:7 (846) 201-10-57</h4>
-      <p class="card-text">rcod_su@samara.edu.ru  г. Самара, ул. Черемшанская, 70</p>
-  </div>
-  <div class="card-footer text-muted">
-      © 2022 Самара:
-      <a class="text-dark" href="https://codsamara.ru\">codsamara</a>
+    </div>
   </div>
 </div>

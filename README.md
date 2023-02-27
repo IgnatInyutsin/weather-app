@@ -48,9 +48,9 @@ chmod +x start
 ./django_logs
 ```
 ## После запуска
-Вы найдете приложение по адресу http://localhost:$BACKEND_PORT$,
+- Вы найдете приложение по адресу http://localhost:$BACKEND_PORT$,
 где BACKEND_PORT - значение переменной BACKEND_PORT в файле docker/weather-app_instances/.env
-Аналогично с FRONTEND
+- Аналогично с FRONTEND
 ## Управление бэкэндом
 ### Консоль Django
 Если вы хотите взаимодействовать непосредственно с файлом manage.py, запустите в папке backend/api/
