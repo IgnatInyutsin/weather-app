@@ -48,7 +48,7 @@ class ClothItem(models.Model):
     temperature_min = models.IntegerField("Минимальная температура")
     temperature_max = models.IntegerField("Максимальная температура")
     type = models.IntegerField("Тип одежды", choices=ClothTypes.choices)
-    thermal_resistence = models.FloatField("Тепловая устойчивость")
+    thermal_resistance = models.FloatField("Тепловая устойчивость")
 
     def __str__(self):
         return self.name
