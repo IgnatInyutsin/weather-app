@@ -1,3 +1,3 @@
 export class Connector {
-  url: string = "http://backend:8000/"
+  url: string = "http://localhost:98/"
 }

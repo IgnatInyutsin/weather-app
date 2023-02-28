@@ -72,15 +72,24 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyNickname">
+            Введите никнейм
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyPassword">
+            Введите пароль
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.incorrectAuth">
+            Некорректные данные
+          </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
-            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp">
+            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp" [(ngModel)]="authorization.nickname" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword2">
+            <input type="password" class="form-control" id="exampleInputPassword2" [(ngModel)]="authorization.password" [ngModelOptions]="{standalone: true}">
           </div>
-          <button type="submit" class="btn btn-primary">Войти</button>
+          <button type="submit" class="btn btn-primary" (click)="userAuthorization()">Войти</button>
         </form>
       </div>
     </div>

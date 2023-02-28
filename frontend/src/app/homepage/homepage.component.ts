@@ -77,6 +77,18 @@ export class HomepageComponent implements OnInit {
     emptyNickname: false,
     alreadyPlacingEmail: false
   }
+
+  authErrorMessages: any = {
+    emptyPassword: false,
+    emptyNickname: false,
+    incorrectAuth: false
+  }
+
+  authorization: any = {
+    nickname: "",
+    password: ""
+  }
+
   registration: any =
     {
       nickname: "",
@@ -84,6 +96,7 @@ export class HomepageComponent implements OnInit {
       email: "",
       retypePassword: "",
     }
+
   userRegistration(): void {
     this.errorMessages.retypePasswordIncorrect = false;
     this.errorMessages.emailIncorrect = false;
@@ -119,6 +132,29 @@ export class HomepageComponent implements OnInit {
       this.errorMessages.alreadyPlacingEmail = true;
     }));
     this.registrationConfirmation = true;
+  }
+
+  userAuthorization(): void {
+    this.authErrorMessages.incorrectAuth = false;
+    this.authErrorMessages.emptyNickname = false;
+    this.authErrorMessages.emptyPassword = false;
+    if (this.authorization.nickname == "") {
+      this.authErrorMessages.emptyNickname = true;
+      return;
+    } if (this.authorization.password == "") {
+      this.authErrorMessages.emptyPassword = true;
+      return;
+    }
+
+    this.http.post(this.connector.url + "api/auth/token/login/", {
+      username: this.authorization.nickname,
+      password: this.authorization.password
+    }).subscribe((data: any) => {
+      this.cookieService.set("token", data.auth_token)
+      location.reload()
+    }, (error) => {
+      this.authErrorMessages.incorrectAuth = true;
+    })
   }
 
   emailIsValid(email: string): boolean {
