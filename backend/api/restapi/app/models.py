@@ -11,6 +11,7 @@ class WeatherRecord(models.Model):
         decimal_places=0
     )
     humidity = models.DecimalField("Влажность", max_digits=4, decimal_places=0)
+    temperature = models.DecimalField("Средняя температура", max_digits=4, decimal_places=0)
     wind = models.CharField(
         "Направление ветра",
         max_length=2,
