@@ -128,82 +128,17 @@
   <div class="col-sm">
     <div class="card card-col">
       <div class="card-header">
-        Погода за 7 дней
+        Погода за 7 дней в {{weatherData.results[0].city}}
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngFor="let item of weatherData.results">
         <div class="container">
           <div class="card">
-            <div class="card-header">27 марта</div>
+            <div class="card-header">{{item.day}}</div>
             <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">28 марта</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">29 марта</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">30 марта</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">31 марта</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">1 апреля</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
-                Узнать, что стоит надевать
-              </button>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-header">2 апреля</div>
-            <div class="card-body">
-              <p>Температура от -3 до 2</p>
-              <p>Влажность 50%</p>
-              <p>Ветер ЮЗ Скорость 6 км/ч</p>
+              <p> Средняя температура {{item.temperature}}°C</p>
+              <p>Влажность {{item.humidity}}%</p>
+              <p>Давление {{item.pressure}} мм. рт. ст</p>
+              <p>Ветер ЮЗ Скорость {{item.temperature}} км/ч</p>
               <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
                 Узнать, что стоит надевать
               </button>

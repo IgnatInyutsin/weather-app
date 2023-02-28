@@ -10,12 +10,67 @@ export class HomepageComponent implements OnInit {
   public map :any;
   public myPolygon: any;
   stateMonitor: any;
+  weatherData: any = {
+    count: 7,
+    next: "",
+    previous: "",
+    results: [
+      {
+        "day": "2022-02-28",
+        "city": "Samara",
+        "pressure": 280,
+        "humidity": 50,
+        "wind": "N",
+        "wind_speed": 6,
+        "temperature": 0
+      },
+      {
+        "day": "2022-03-01",
+        "city": "Samara",
+        "pressure": 280,
+        "humidity": 50,
+        "wind": "N",
+        "wind_speed": 6,
+        "temperature": 0
+      },
+      {
+        "day": "2022-03-02",
+        "city": "Samara",
+        "pressure": 280,
+        "humidity": 50,
+        "wind": "N",
+        "wind_speed": 6,
+        "temperature": 0
+      },
+      {
+        "day": "2022-03-03",
+        "city": "Samara",
+        "pressure": 280,
+        "humidity": 50,
+        "wind": "N",
+        "wind_speed": 6,
+        "temperature": 0
+      },
+      {
+        "day": "2022-03-04",
+        "city": "Samara",
+        "pressure": 280,
+        "humidity": 50,
+        "wind": "N",
+        "wind_speed": 6,
+        "temperature": 0
+      },
+
+    ]
+  };
+
 
   drawCardPoint(newValue: any): void {
     this.myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
   }
   constructor() { }
   ngOnInit(): void {
+    // инициализируем яндекс карты
     ymaps.ready().then(() => {
       this.map = new ymaps.Map('map', {
         center: [53.2001, 50.15],
