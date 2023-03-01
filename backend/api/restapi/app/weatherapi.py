@@ -12,7 +12,7 @@ def cash_forecast(city):
     for i in range(len(response_data)):
         # преобразуем текст в объект datetime
         date_i = datetime.strptime(response_data[i]["dt_txt"], '%Y-%m-%d %H:%M:%S')
-        if len(WeatherRecord.objects.filter(city=city.upper(), day=date_i)) == 0:
+        if len(WeatherRecord.objects.all().filter(city=city.upper(), day=date_i)) == 0:
             # если не cуществует записи - создаем
             obj = WeatherRecord(city=city.upper(),
                                 day=date_i,
