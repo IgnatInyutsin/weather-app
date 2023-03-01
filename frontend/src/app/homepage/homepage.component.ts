@@ -127,6 +127,13 @@ export class HomepageComponent implements OnInit {
   }
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
   ngOnInit(): void {
+    if (this.cookieService.get("token") == '') {
+      this.http.get(this.connector.url + "api/auth/users/me/", {
+        headers: new HttpHeaders({
+          "Authorization": "token" + this.cookieService.get("token")
+        })
+      }).subscribe(() => {}, this.logout);
+    }
   }
 
   cityWeather(): void {
