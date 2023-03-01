@@ -9,7 +9,6 @@ class WeatherViewSet(mixins.ListModelMixin,
                    viewsets.GenericViewSet):
     queryset = WeatherRecord.objects.all()
     serializer_class = WeatherRecordSerializer
-    pagination_class = None
     permission_classes = (permissions.AllowAny,)
 
     def get_queryset(self):
@@ -19,4 +18,4 @@ class WeatherViewSet(mixins.ListModelMixin,
             return None
 
         cash_forecast(city)
-        return WeatherRecord.objects.filter(day__gt=datetime.now())
+        return WeatherRecord.objects.filter(day__gt=datetime.now(), city=city.upper())

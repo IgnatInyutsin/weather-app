@@ -16,59 +16,8 @@ export class HomepageComponent implements OnInit {
   stateMonitor: any;
   registrationConfirmation: boolean = false;
   coordinatesNow: any;
-  weatherData: any = {
-    count: 7,
-    next: "",
-    previous: "",
-    results: [
-      {
-        "day": "2022-02-28",
-        "city": "Samara",
-        "pressure": 280,
-        "humidity": 50,
-        "wind": "N",
-        "wind_speed": 6,
-        "temperature": 0
-      },
-      {
-        "day": "2022-03-01",
-        "city": "Samara",
-        "pressure": 280,
-        "humidity": 50,
-        "wind": "N",
-        "wind_speed": 6,
-        "temperature": 0
-      },
-      {
-        "day": "2022-03-02",
-        "city": "Samara",
-        "pressure": 280,
-        "humidity": 50,
-        "wind": "N",
-        "wind_speed": 6,
-        "temperature": 0
-      },
-      {
-        "day": "2022-03-03",
-        "city": "Samara",
-        "pressure": 280,
-        "humidity": 50,
-        "wind": "N",
-        "wind_speed": 6,
-        "temperature": 0
-      },
-      {
-        "day": "2022-03-04",
-        "city": "Samara",
-        "pressure": 280,
-        "humidity": 50,
-        "wind": "N",
-        "wind_speed": 6,
-        "temperature": 0
-      },
-
-    ]
-  };
+  cityName: any = "Самара";
+  weatherData: any = {};
 
   errorMessages: any = {
     retypePasswordIncorrect: false,
@@ -171,33 +120,16 @@ export class HomepageComponent implements OnInit {
   }
   constructor(private http: HttpClient, private connector: Connector, private cookieService: CookieService) { }
   ngOnInit(): void {
-    // инициализируем яндекс карты
-    ymaps.ready().then(() => {
-      this.map = new ymaps.Map('map', {
-        center: [53.2001, 50.15],
-        zoom: 12
-      });
-      // Создаем многоугольник без вершин.
-      this.myPolygon = new ymaps.Polygon([], {}, {
-        // Курсор в режиме добавления новых вершин.
-        editorDrawingCursor: "crosshair",
-        // Максимально допустимое количество вершин.
-        editorMaxPoints: 1,
-        // Цвет заливки.
-        fillColor: '#00FF00',
-        // Цвет обводки.
-        strokeColor: '#0000FF',
-        // Ширина обводки.
-        strokeWidth: 5
-      });
-      this.map.geoObjects.add(this.myPolygon);
-      // В режиме добавления новых вершин меняем цвет обводки многоугольника.
-      this.stateMonitor = new ymaps.Monitor(this.myPolygon.editor.state);
-      this.stateMonitor.add("drawing", this.drawCardPoint);
+  }
 
-      // Включаем режим редактирования с возможностью добавления новых вершин.
-      this.myPolygon.editor.startDrawing();
+  cityWeather(): void {
+    this.weatherData = {}
+    this.http.get(this.connector.url + "api/weather/?city=" + this.cityName).subscribe((data) => {
+      this.weatherData = data;
+    }, (error) => {
+      console.log(error);
     });
+    this.cityName = "";
   }
 
 }
