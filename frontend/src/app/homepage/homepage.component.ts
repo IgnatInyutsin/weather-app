@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Connector} from "../restapi";
 import {catchError} from "rxjs";
 import { CookieService } from 'ngx-cookie-service';
@@ -114,11 +114,18 @@ export class HomepageComponent implements OnInit {
     this.myPolygon.options.set("strokeColor", newValue ? '#FF0000' : '#0000FF');
   }
 
+  logout(): void {
+    this.http.post(this.connector.url + "api/auth/token/logout/", {},
+      {headers: new HttpHeaders({"Authorization": "token " + this.cookieService.get("token")})});
+    this.cookieService.delete("token");
+    location.reload();
+  }
+
   mapClick(): void {
     this.coordinatesNow = this.myPolygon
     console.log(this.myPolygon)
   }
-  constructor(private http: HttpClient, private connector: Connector, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
   ngOnInit(): void {
   }
 

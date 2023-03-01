@@ -1,13 +1,16 @@
 <script src="../app.module.ts"></script>
 <div class="reglog-container">
 <!-- Кнопка-триггер окна регистрации -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;">
-  Регистрация
-</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;" *ngIf="cookieService.get('token') == ''">
+    Регистрация
+  </button>
 <!-- Кнопка-триггер окна входв -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-  Вход
-</button>
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2" *ngIf="cookieService.get('token') == ''">
+    Вход
+  </button>
+  <button type="button" class="btn btn-primary" *ngIf="cookieService.get('token') != ''" (click)="logout()">
+    Выход
+  </button>
 </div>
 
 <!-- Модальное окно -->
