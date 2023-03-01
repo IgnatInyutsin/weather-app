@@ -110,8 +110,8 @@
   </div>
 </div>
 <div class="mb-3" style="width: 400px; margin: 0 auto">
-  <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px">
-  <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px">Узнать погоду в этом городе</button>
+  <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px" [(ngModel)]="cityName">
+  <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px" (click)="cityWeather()">Узнать погоду в этом городе</button>
 </div>
 <div class="row">
   <div class="col-sm">
@@ -153,13 +153,13 @@
           <label for="customRange4" class="form-label">Выберите максимально выносимую температуру в этой одежде при безветренной погоде: 0</label>
           <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange4">
         </div>
-      </div>1
+      </div>
     </div>
   </div>
   <div class="col-sm">
     <div class="card card-col">
       <div class="card-header">
-        Погода за 7 дней в {{weatherData.results[0].city}}
+        Погода {{weatherData.results[0].city}}
       </div>
       <div class="card-body" *ngFor="let item of weatherData.results">
         <div class="container">
