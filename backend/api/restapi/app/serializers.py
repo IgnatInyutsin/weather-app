@@ -9,4 +9,4 @@ class ClothItemSerializer(serializers.ModelSerializer):
 
 class WeatherRecordSerializer(serializers.ModelSerializer):
     class Meta:
-        model = WeatherRecord
+        model = WeatherRecords
