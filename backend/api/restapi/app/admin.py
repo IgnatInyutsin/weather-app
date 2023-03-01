@@ -4,7 +4,7 @@ from .models import WeatherRecord, ClothItem
 
 @admin.register(WeatherRecord)
 class WeatherRecordAdmin(admin.ModelAdmin):
-    list_display = ("__str__", "pressure", "wind", "wind_speed", "humidity")
+    list_display = ("__str__", "pressure", "wind_speed", "humidity")
 
 
 @admin.register(ClothItem)
