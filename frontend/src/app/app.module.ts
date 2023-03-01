@@ -12,7 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import {Connector} from "./restapi";
 // определение маршрутов
 const appRoutes: Routes = [
   {
@@ -47,7 +47,8 @@ const appRoutes: Routes = [
     HttpClientModule,
   ],
   providers: [
-    CookieService
+    CookieService,
+    Connector
   ],
   bootstrap: [AppComponent]
 })

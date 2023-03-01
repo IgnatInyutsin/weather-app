@@ -106,7 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 DJOSER = {
     'PERMISSIONS': {
         'user_list': ['rest_framework.permissions.AllowAny'],
-    }
+    },
+    'SEND_ACTIVATION_EMAIL': False,
 }
 
 SIMPLE_JWT = {

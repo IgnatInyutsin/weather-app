@@ -1,3 +1,4 @@
+<script src="../app.module.ts"></script>
 <div class="reglog-container">
 <!-- Кнопка-триггер окна регистрации -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;">
@@ -19,24 +20,42 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="alert alert-success" role="alert" *ngIf="registrationConfirmation">
+            Вы успешно зарегистрировались! Можете входить
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emailIncorrect">
+            Введите свой НАСТОЯЩИЙ email
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.alreadyPlacingEmail">
+            Данный email уже занят
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.retypePasswordIncorrect">
+            Пароли не совпадают, попробуйте ввести еще раз
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emptyPassword">
+            Заполните поля паролей
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="errorMessages.emptyNickname">
+            Заполните поле никнейма
+          </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
-            <input type="input" class="form-control" id="exampleNicknameEmail1" aria-describedby="emailHelp">
+            <input type="input" class="form-control" id="exampleNicknameEmail1" aria-describedby="emailHelp" [(ngModel)]="registration.nickname" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Ваша почта</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="registration.email" [ngModelOptions]="{standalone: true}">
             <div id="emailHelp" class="form-text">Мы никогда не будем делиться вашей электронной почтой с кем-либо еще.</div>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword1">
+            <input type="password" class="form-control" id="exampleInputPassword1" [(ngModel)]="registration.password" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Повторите ваш пароль</label>
-            <input type="password" class="form-control" id="exampleRetypeInputPassword1">
+            <input type="password" class="form-control" id="exampleRetypeInputPassword1" [(ngModel)]="registration.retypePassword" [ngModelOptions]="{standalone: true}">
           </div>
-          <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+          <button type="submit" class="btn btn-primary" (click)="userRegistration()">Зарегистрироваться</button>
         </form>
       </div>
     </div>
@@ -53,15 +72,24 @@
       </div>
       <div class="modal-body">
         <form>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyNickname">
+            Введите никнейм
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.emptyPassword">
+            Введите пароль
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="authErrorMessages.incorrectAuth">
+            Некорректные данные
+          </div>
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Ваш никнейм</label>
-            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp">
+            <input type="input" class="form-control" id="exampleNicknameEmail2" aria-describedby="emailHelp" [(ngModel)]="authorization.nickname" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1" class="form-label">Ваш пароль</label>
-            <input type="password" class="form-control" id="exampleInputPassword2">
+            <input type="password" class="form-control" id="exampleInputPassword2" [(ngModel)]="authorization.password" [ngModelOptions]="{standalone: true}">
           </div>
-          <button type="submit" class="btn btn-primary">Войти</button>
+          <button type="submit" class="btn btn-primary" (click)="userAuthorization()">Войти</button>
         </form>
       </div>
     </div>
@@ -81,7 +109,10 @@
     </div>
   </div>
 </div>
-<div id="map" style="width: 100%; height: 300px; position: relative"></div>
+<div class="mb-3" style="width: 400px; margin: 0 auto">
+  <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px">
+  <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px">Узнать погоду в этом городе</button>
+</div>
 <div class="row">
   <div class="col-sm">
     <div class="card card-col">
