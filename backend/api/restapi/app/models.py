@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 
 class WeatherRecord(models.Model):
     city = models.CharField("Город", max_length=170)
@@ -37,12 +37,14 @@ class ClothItem(models.Model):
         SCARFS = 5, "Шарфы/платки"
         SHOES = 6, "Обувь"
 
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="clothes")
     name = models.CharField("Название одежды", max_length=200)
     image_url = models.URLField("Ссылка на изображение", blank=True, null=True)
     temperature_min = models.IntegerField("Минимальная температура")
     temperature_max = models.IntegerField("Максимальная температура")
     type = models.IntegerField("Тип одежды", choices=ClothTypes.choices)
-    thermal_resistance = models.FloatField("Тепловая устойчивость")
+    thermal_resistance_min = models.FloatField("Тепловая устойчивость (min)")
+    thermal_resistance_max = models.FloatField("Тепловая устойчивость (max)")
 
     def __str__(self):
         return self.name
