@@ -130,7 +130,7 @@ export class HomepageComponent implements OnInit {
     if (this.cookieService.get("token") == '') {
       this.http.get(this.connector.url + "api/auth/users/me/", {
         headers: new HttpHeaders({
-          "Authorization": "token" + this.cookieService.get("token")
+          "Authorization": "Token " + this.cookieService.get("token")
         })
       }).subscribe(() => {}, this.logout);
     }
