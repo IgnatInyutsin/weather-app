@@ -6,6 +6,8 @@ from restapi.app.weatherapi import cash_forecast
 from datetime import datetime
 from rest_framework.authtoken.models import Token
 from django.db import transaction
+from rest_framework.response import Response
+from rest_framework import status
 
 class WeatherViewSet(mixins.ListModelMixin,
                    viewsets.GenericViewSet):
@@ -33,7 +35,7 @@ class ClothViewSet(mixins.CreateModelMixin,
         serializer = ClothItemPostSerializer(data=request.data)
         if serializer.is_valid():
             # получаем зарегистрированного пользователя
-            user = Token.objects.get(key=request.headers.get("Authorization")[6:])
+            user = Token.objects.get(key=request.headers.get("Authorization")[6:]).user
             # рассчитываем тепловое сопротивление
             thermal_resistance_min = 0.0098518285*(33-request.data.get("temperature_max")) - 0.1425
             thermal_resistance_max = 0.0098518285*(33-request.data.get("temperature_min")) - 0.1425
@@ -47,7 +49,7 @@ class ClothViewSet(mixins.CreateModelMixin,
                             thermal_resistance_max=thermal_resistance_max)
             obj.save()
             #возвращаем 200
-            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_200_OK)
+            return Response({"status": "success", "data": serializer.data}, status=status.HTTP_201_CREATED)
         else:
             # если не прошел сериализацию - возвращаем error
             return Response({"status": "error", "data": serializer.errors}, status=status.HTTP_400_BAD_REQUEST)

@@ -149,8 +149,7 @@ export class HomepageComponent implements OnInit {
     }, (error) => {
       console.log(error);
     });
-    this.cityName = "";
-    if (this.cookieService.get("token") == '') {
+    if (this.cookieService.get("token") != '') {
       this.http.get(this.connector.url + "api/auth/users/me/", {
         headers: new HttpHeaders({
           "Authorization": "Token " + this.cookieService.get("token")
