@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from .utils import WEAR_CLO, get_alpha, get_general_wear_recomendation
 
 class WeatherRecord(models.Model):
     city = models.CharField("Город", max_length=170)
@@ -16,9 +17,24 @@ class WeatherRecord(models.Model):
         max_digits=3,
         decimal_places=1
     )
+    general_recomendation = models.FloatField(
+        "Общая рекомендация выбора одежды",
+        choices=WEAR_CLO,
+        default=0.3
+    )
 
     def __str__(self):
         return f"<Weather for {self.day} in {self.city}>"
+
+    def calculate_CLO(self):
+        N = 2.66448
+        J = (0.15 * (33 - float(self.temperature)) / N) - (5.7 / get_alpha(self.wind_speed))
+        R = 0.175 * J
+        CLO = R / 0.155
+        return CLO
+
+    def clean(self) -> None:
+        self.general_recomendation = get_general_wear_recomendation(self.calculate_CLO())[0]
 
     class Meta:
         verbose_name = "Погодное измерение"
