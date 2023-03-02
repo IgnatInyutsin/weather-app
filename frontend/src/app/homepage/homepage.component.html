@@ -119,24 +119,22 @@
   <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px" (click)="cityWeather()">Узнать погоду в этом городе</button>
 </div>
 <div class="row">
-  <div class="col-sm">
+  <div class="col-sm" *ngIf="cookieService.get('token') != ''">
     <div class="card card-col">
       <div class="card-header">
         Изменить гардероб
       </div>
       <div class="card-body">
+        <div class="alert alert-success" role="alert" *ngIf="clothConfirmation">
+          Одежда успешно создана
+        </div>
         <div class="btn-group" role="group" aria-label="Basic example" style="margin-bottom: 3vh;">
-          <button type="button" class="btn btn-outline-secondary">Добавить</button>
-          <button type="button" class="btn btn-outline-secondary">Удалить</button>
+          <button type="button" class="btn btn-outline-secondary" (click)="addCloth()">Добавить</button>
         </div>
 
         <div class="mb-3">
-          <label for="exampleInputURL" class="form-label">Вставьте ссылку на картинку</label>
-          <input type="input" class="form-control" id="exampleInputURL">
-        </div>
-        <div class="mb-3">
           <label for="exampleInputClothName" class="form-label">Название одежды</label>
-          <input type="input" class="form-control" id="exampleInputClothName">
+          <input type="input" class="form-control" id="exampleInputClothName" [(ngModel)]="createClothForm.name">
         </div>
         <div class="mb-3">
           <div class="dropdown">
@@ -144,19 +142,22 @@
               Выберите тип одежды
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Тип 1</a></li>
-              <li><a class="dropdown-item" href="#">Тип 2</a></li>
-              <li><a class="dropdown-item" href="#">Тип 3</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=1">Верхняя одежда</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=2">Головной убор</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=3">Чулочно-носочные изделия</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=4">Перчаточные изделия</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=5">Шарфы/платки</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=6">Обувь</a></li>
             </ul>
           </div>
         </div>
         <div class="mb-3">
-          <label for="customRange3" class="form-label">Выберите минимально выносимую температуру в этой одежде при безветренной погоде: 0</label>
-          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange3">
+          <label for="customRange3" class="form-label">Выберите минимально выносимую температуру в этой одежде при безветренной погоде: {{createClothForm.temperature_min}}</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange3" [(ngModel)]="createClothForm.temperature_min">
         </div>
         <div class="mb-3">
-          <label for="customRange4" class="form-label">Выберите максимально выносимую температуру в этой одежде при безветренной погоде: 0</label>
-          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange4">
+          <label for="customRange4" class="form-label">Выберите максимально выносимую температуру в этой одежде при безветренной погоде: {{createClothForm.temperature_max}}</label>
+          <input type="range" class="form-range" min="-40" max="40" step="1" id="customRange4" [(ngModel)]="createClothForm.temperature_max">
         </div>
       </div>
     </div>

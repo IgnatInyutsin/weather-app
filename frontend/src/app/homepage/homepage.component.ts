@@ -46,6 +46,15 @@ export class HomepageComponent implements OnInit {
     incorrectAuth: false
   }
 
+  createClothForm: any = {
+    name: "",
+    type: 1,
+    temperature_min: 0,
+    temperature_max: 0
+  }
+
+  clothConfirmation: boolean = false;
+
   authorization: any = {
     nickname: "",
     password: ""
@@ -167,4 +176,12 @@ export class HomepageComponent implements OnInit {
     this.cityName = "";
   }
 
+  addCloth(): void {
+    this.clothConfirmation = false;
+    this.http.post(this.connector.url + "api/clothes/", this.createClothForm,
+      {headers: new HttpHeaders({"Authorization": "Token " + this.cookieService.get("token")})}).subscribe((data) => {
+        this.clothConfirmation = true;
+
+    });
+  }
 }
