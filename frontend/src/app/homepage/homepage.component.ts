@@ -17,8 +17,21 @@ export class HomepageComponent implements OnInit {
   registrationConfirmation: boolean = false;
   coordinatesNow: any;
   cityName: any = "Самара";
-  weatherData: any = {};
-
+  weatherData: any = {results: [{id: 0, general_recomendation: 0.3, day: "", city: "", temperature: 0, humidity: 0,
+    pressure: 0, }]};
+  clothes = {0.3: 'Трусы, футболка, шорты, легкие носки, сандалии',
+              0.6: 'Мужская одежда: рубашка с короткими рукавами, легкие брюки, легкие носки, обувь.',
+              1.0: 'Мужская одежда: Трусы, рубашка, брюки, пиджак, носки, обувью' +
+              'Женская одежда: Трусы, чулки, блузка, длинная юбка, пиджак, обувь',
+              1.3: 'Нижняя одежда с длинными рукавами и штанинами, рубашка, ' +
+              'брюки, свитер, пиджак, носки, обувь',
+              1.5: 'Нижняя одежда с короткими рукавами и штанинами, рубашка, ' +
+              'брюки, жилет, пиджак, пальто, носки, обувь',
+              2.0: 'Нижняя одежда с короткими рукавами и штанинами, ' +
+              'рубашка, брюки, пиджак, ',
+              2.55: 'Нижняя одежда с длинными рукавами и штанинами, термозащитная куртка и брюки, ' +
+              'парка (аляска) с тяжелой подбивкой, штаны с тяжелой подбивкой, носки, обувь, шапка, перчатки'
+  }
   errorMessages: any = {
     retypePasswordIncorrect: false,
     emailIncorrect: false,
@@ -121,12 +134,22 @@ export class HomepageComponent implements OnInit {
     location.reload();
   }
 
+  get(arr:any, index:any): string {
+    return arr[index]
+  }
+
   mapClick(): void {
     this.coordinatesNow = this.myPolygon
     console.log(this.myPolygon)
   }
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
   ngOnInit(): void {
+    this.http.get(this.connector.url + "api/weather/?city=" + this.cityName).subscribe((data) => {
+      this.weatherData = data;
+    }, (error) => {
+      console.log(error);
+    });
+    this.cityName = "";
     if (this.cookieService.get("token") == '') {
       this.http.get(this.connector.url + "api/auth/users/me/", {
         headers: new HttpHeaders({
@@ -137,7 +160,6 @@ export class HomepageComponent implements OnInit {
   }
 
   cityWeather(): void {
-    this.weatherData = {}
     this.http.get(this.connector.url + "api/weather/?city=" + this.cityName).subscribe((data) => {
       this.weatherData = data;
     }, (error) => {

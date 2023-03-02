@@ -99,18 +99,20 @@
   </div>
 </div>
 <!-- Модальное окно -->
-<div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div *ngFor="let item of weatherData.results">
+<div class="modal fade" [id]="'exampleModal'+item.id" tabindex="-1" [attr.aria-labelledby]="'exampleModal'+item.id" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Что надеть 27 марта?</h5>
+        <h5 class="modal-title">Что надеть {{item.day}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        Одеть: ..., ..., ..., ...
+        {{get(clothes, item.general_recomendation)}}
       </div>
     </div>
   </div>
+</div>
 </div>
 <div class="mb-3" style="width: 400px; margin: 0 auto">
   <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px" [(ngModel)]="cityName">
@@ -172,8 +174,8 @@
               <p> Средняя температура {{item.temperature}}°C</p>
               <p>Влажность {{item.humidity}}%</p>
               <p>Давление {{item.pressure}} мм. рт. ст</p>
-              <p>Ветер ЮЗ Скорость {{item.temperature}} км/ч</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3" style="margin-right: 1vw;">
+              <p>Скорость ветра {{item.wind_speed}} м/c</p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id" style="margin-right: 1vw;">
                 Узнать, что стоит надевать
               </button>
             </div>

@@ -27,7 +27,7 @@ class WeatherRecord(models.Model):
         return f"<Weather for {self.day} in {self.city}>"
 
     def calculate_CLO(self):
-        N = 2.66448
+        N = 3
         J = (0.15 * (33 - float(self.temperature)) / N) - (5.7 / get_alpha(self.wind_speed))
         R = 0.175 * J
         CLO = R / 0.155
