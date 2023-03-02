@@ -20,4 +20,5 @@ def cash_forecast(city):
                                 humidity=response_data[i]["main"]["humidity"],
                                 temperature=(response_data[i]["main"]["temp_min"] + response_data[i]["main"]["temp_max"])//2,
                                 wind_speed=response_data[i]["wind"]["speed"])
+            obj.clean()
             obj.save()
