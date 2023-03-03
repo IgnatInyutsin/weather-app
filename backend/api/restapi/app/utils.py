@@ -100,6 +100,8 @@ def get_user_recomendations(user_id, wr: WeatherRecord):
     tops = []
     for j in jackets:
         for s in shirts:
+            if abs(s.thermal_resistance_mean - clo) < DELTA_CLO:
+                tops.append(s)
             if abs(j.thermal_resistance_mean + s.thermal_resistance_mean - clo) < DELTA_CLO:
                 tops.append((j, s))
     
