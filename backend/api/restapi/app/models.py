@@ -46,12 +46,13 @@ class WeatherRecord(models.Model):
 
 class ClothItem(models.Model):
     class ClothTypes(models.IntegerChoices):
-        OUTERWEAR = 1, "Верхняя одежда"
+        JACKET = 1, "Куртка/кофта/свитер"
         HEADGEAR = 2, "Головной убор"
         SOCKS = 3, "Чулочно-носочные изделия"
         GLOVES = 4, "Перчаточные изделия"
-        SCARFS = 5, "Шарфы/платки"
-        SHOES = 6, "Обувь"
+        SHOES = 5, "Обувь"
+        PANTS = 6, "Штаны"
+        SHIRTS = 7, "Рубашки"
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="clothes")
     name = models.CharField("Название одежды", max_length=200)
@@ -61,7 +62,7 @@ class ClothItem(models.Model):
     type = models.IntegerField("Тип одежды", choices=ClothTypes.choices)
     thermal_resistance_min = models.FloatField("Тепловая устойчивость (min)")
     thermal_resistance_max = models.FloatField("Тепловая устойчивость (max)")
-
+ 
     def __str__(self):
         return self.name
 
@@ -69,6 +70,10 @@ class ClothItem(models.Model):
         super().clean()
         if self.temperature_min >= self.temperature_max:
             raise self.ValidationError("Максимальная температура должна быть больше минимальной")
+        
+    @property
+    def thermal_resistance_mean(self) -> float:
+        return (self.thermal_resistance_max + self.thermal_resistance_min) / 2
 
     class Meta:
         verbose_name = "Элемент одежды"
