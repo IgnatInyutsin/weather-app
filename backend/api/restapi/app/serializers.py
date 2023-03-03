@@ -13,3 +13,7 @@ class WeatherRecordSerializer(serializers.ModelSerializer):
         model = WeatherRecord
         fields = '__all__'
 
+class EmptySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = WeatherRecord
+        fields = []

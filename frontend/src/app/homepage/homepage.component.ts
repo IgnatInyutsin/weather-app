@@ -46,6 +46,13 @@ export class HomepageComponent implements OnInit {
     incorrectAuth: false
   }
 
+  personalRecommendation: any = {0: {
+      tops: [],
+      bottoms: [],
+      heads: [],
+      foots: []
+  }}
+
   createClothForm: any = {
     name: "",
     type: 1,
@@ -105,6 +112,19 @@ export class HomepageComponent implements OnInit {
     this.registrationConfirmation = true;
   }
 
+  getPersonalRecomendation(id: number): void {
+    if (this.cookieService.get("token") != '') {
+      this.http.get(this.connector.url + "api/weather/recommendation/?weather_id=" + id, {
+        headers: new HttpHeaders({
+          "Authorization": "Token " + this.cookieService.get("token")
+        })
+      }).subscribe((data) => {
+        console.log(data);
+        this.personalRecommendation[id] = data;
+      });
+    }
+  }
+
   userAuthorization(): void {
     this.authErrorMessages.incorrectAuth = false;
     this.authErrorMessages.emptyNickname = false;
@@ -146,15 +166,18 @@ export class HomepageComponent implements OnInit {
   get(arr:any, index:any): string {
     return arr[index]
   }
-
-  mapClick(): void {
-    this.coordinatesNow = this.myPolygon
-    console.log(this.myPolygon)
-  }
   constructor(private http: HttpClient, private connector: Connector, public cookieService: CookieService) { }
   ngOnInit(): void {
     this.http.get(this.connector.url + "api/weather/?city=" + this.cityName).subscribe((data) => {
       this.weatherData = data;
+      for (let i = 0; i < this.weatherData.results.length; i++) {
+        this.personalRecommendation[this.weatherData.results[i].id] = {
+          tops: [],
+          bottoms: [],
+          heads: [],
+          foots: []
+        }
+      }
     }, (error) => {
       console.log(error);
     });
@@ -169,7 +192,16 @@ export class HomepageComponent implements OnInit {
 
   cityWeather(): void {
     this.http.get(this.connector.url + "api/weather/?city=" + this.cityName).subscribe((data) => {
+      this.personalRecommendation = []
       this.weatherData = data;
+      for (let i = 0; i < this.weatherData.results.length; i++) {
+        this.personalRecommendation[this.weatherData.results[i].id] = {
+            tops: [],
+            bottoms: [],
+            heads: [],
+            foots: []
+        }
+      }
     }, (error) => {
       console.log(error);
     });

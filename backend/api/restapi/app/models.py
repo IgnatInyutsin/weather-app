@@ -50,7 +50,7 @@ class ClothItem(models.Model):
         HEADGEAR = 2, "Головной убор"
         SOCKS = 3, "Чулочно-носочные изделия"
         GLOVES = 4, "Перчаточные изделия"
-        SHOES = 5, "Обувь"
+        SHOES = 5, "Головной убор"
         PANTS = 6, "Штаны"
         SHIRTS = 7, "Рубашки"
 

@@ -3,7 +3,7 @@
   position: relative;
 }
 .card-col {
-  height: 50vh; overflow: auto;
+  height: 70vh; overflow: auto;
 }
 @media only screen and (max-width: 576px) {
   .card-col {

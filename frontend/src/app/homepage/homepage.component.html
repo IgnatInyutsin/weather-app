@@ -1,4 +1,3 @@
-<script src="../app.module.ts"></script>
 <div class="reglog-container">
 <!-- Кнопка-триггер окна регистрации -->
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-right: 1vw;" *ngIf="cookieService.get('token') == ''">
@@ -100,25 +99,48 @@
 </div>
 <!-- Модальное окно -->
 <div *ngFor="let item of weatherData.results">
-<div class="modal fade" [id]="'exampleModal'+item.id" tabindex="-1" [attr.aria-labelledby]="'exampleModal'+item.id" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal fade" [id]="'exampleModal'+item.id" tabindex="-1" [attr.aria-labelledby]="'exampleModal'+item.id" aria-hidden="true">
+    <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Что надеть {{item.day}}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
       </div>
       <div class="modal-body">
-        {{get(clothes, item.general_recomendation)}}
+        <div *ngIf="cookieService.get('token') == ''">{{get(clothes, item.general_recomendation)}}</div>
+        <div *ngIf="cookieService.get('token') != ''">
+          <p>Лучшие сочетания одежды из вашего гардероба:</p>
+          <p><b>Верх:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].tops; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Низ:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].bottoms; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Головные уборы:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].heads; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+          <p><b>Ноги:</b></p>
+          <div *ngFor="let cloth of personalRecommendation[item.id].foots; let i = index">{{i+1}})
+            <div *ngFor="let oneOfPair of cloth" style="display: inline;">{{oneOfPair}}; </div>
+          </div>
+          <br>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  </div>
 </div>
 <div class="mb-3" style="width: 400px; margin: 0 auto">
   <input type="input" class="form-control" id="exampleInputCity" style="margin: auto; width: 400px" [(ngModel)]="cityName">
   <button type="submit" class="btn btn-primary" style="position: relative; margin: auto; width: 400px" (click)="cityWeather()">Узнать погоду в этом городе</button>
 </div>
-<div class="row">
+  <div class="row">
   <div class="col-sm" *ngIf="cookieService.get('token') != ''">
     <div class="card card-col">
       <div class="card-header">
@@ -142,12 +164,13 @@
               Выберите тип одежды
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" (click)="createClothForm.type=1">Верхняя одежда</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=1">Куртка/кофта/свитер</a></li>
               <li><a class="dropdown-item" (click)="createClothForm.type=2">Головной убор</a></li>
               <li><a class="dropdown-item" (click)="createClothForm.type=3">Чулочно-носочные изделия</a></li>
               <li><a class="dropdown-item" (click)="createClothForm.type=4">Перчаточные изделия</a></li>
-              <li><a class="dropdown-item" (click)="createClothForm.type=5">Шарфы/платки</a></li>
-              <li><a class="dropdown-item" (click)="createClothForm.type=6">Обувь</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=5">Головной убор</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=6">Штаны</a></li>
+              <li><a class="dropdown-item" (click)="createClothForm.type=7">Обувь</a></li>
             </ul>
           </div>
         </div>
@@ -176,7 +199,7 @@
               <p>Влажность {{item.humidity}}%</p>
               <p>Давление {{item.pressure}} мм. рт. ст</p>
               <p>Скорость ветра {{item.wind_speed}} м/c</p>
-              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id" style="margin-right: 1vw;">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'+item.id" style="margin-right: 1vw;" (click)="getPersonalRecomendation(item.id)">
                 Узнать, что стоит надевать
               </button>
             </div>
