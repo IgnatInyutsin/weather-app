@@ -47,7 +47,7 @@ def get_user_recomendations(user_id, wr: WeatherRecord):
     for j in jackets:
         for s in shirts:
             if abs(s.thermal_resistance_mean - clo) < abs(s.thermal_resistance_mean - s.thermal_resistance_max):
-                tops.append((s.name))
+                tops.append((s.name, ""))
             if abs(j.thermal_resistance_mean + s.thermal_resistance_mean - clo) < (abs(j.thermal_resistance_mean - j.thermal_resistance_max) + abs(s.thermal_resistance_mean - s.thermal_resistance_max)):
                 tops.append((j.name, s.name))
 
@@ -60,12 +60,12 @@ def get_user_recomendations(user_id, wr: WeatherRecord):
     bottoms = []
     for p in pants:
         if abs(p.thermal_resistance_mean - clo) < abs(p.thermal_resistance_mean - p.thermal_resistance_max):
-            bottoms.append((p.name))
+            bottoms.append((p.name, ""))
 
     heads = []
     for h in headgears:
         if abs(h.thermal_resistance_mean - clo) < abs(h.thermal_resistance_mean - h.thermal_resistance_max):
-            heads.append((h.name))
+            heads.append((h.name, ""))
 
     return {
         "tops": tops,
