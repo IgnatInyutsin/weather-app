@@ -106,10 +106,12 @@ export class HomepageComponent implements OnInit {
       email: this.registration.email,
       username: this.registration.nickname,
       password: this.registration.password
-    }).pipe(catchError(() : any => {
-      this.errorMessages.alreadyPlacingEmail = true;
-    }));
-    this.registrationConfirmation = true;
+    }).subscribe((data) => {
+      this.registrationConfirmation = true;
+    }, (error) => {
+      console.log(error)
+      this.errorMessages.emailIncorrect = true;
+    })
   }
 
   getPersonalRecomendation(id: number): void {
