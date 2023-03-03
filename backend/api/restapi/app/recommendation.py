@@ -46,25 +46,25 @@ def get_user_recomendations(user_id, wr: WeatherRecord):
     tops = []
     for j in jackets:
         for s in shirts:
-            if abs(s.thermal_resistance_mean - clo) < DELTA_CLO:
+            if abs(s.thermal_resistance_mean - clo) < abs(s.thermal_resistance_mean - s.thermal_resistance_max) * 2:
                 tops.append(s.name)
-            if abs(j.thermal_resistance_mean + s.thermal_resistance_mean - clo) < abs(j.thermal_resistance_mean - j.thermal_resistance_max) + abs(s.thermal_resistance_mean - s.thermal_resistance_max):
+            if abs(j.thermal_resistance_mean + s.thermal_resistance_mean - clo) < (abs(j.thermal_resistance_mean - j.thermal_resistance_max) + abs(s.thermal_resistance_mean - s.thermal_resistance_max))*2:
                 tops.append((j.name, s.name))
 
     feets = []
     for sck in socks:
         for sh in shoes:
-            if abs(sck.thermal_resistance_mean + sh.thermal_resistance_mean - clo) < abs(sck.thermal_resistance_mean - sck.thermal_resistance_max) + abs(sh.thermal_resistance_mean - sh.thermal_resistance_max):
+            if abs(sck.thermal_resistance_mean + sh.thermal_resistance_mean - clo) < (abs(sck.thermal_resistance_mean - sck.thermal_resistance_max) + abs(sh.thermal_resistance_mean - sh.thermal_resistance_max))*2:
                 feets.append((sck.name, sh.name))
 
     bottoms = []
     for p in pants:
-        if abs(p.thermal_resistance_mean - clo) < abs(p.thermal_resistance_mean - p.thermal_resistance_max):
+        if abs(p.thermal_resistance_mean - clo) < abs(p.thermal_resistance_mean - p.thermal_resistance_max)*2:
             bottoms.append((p.name))
 
     heads = []
     for h in headgears:
-        if abs(h.thermal_resistance_mean - clo) < abs(h.thermal_resistance_mean - h.thermal_resistance_max):
+        if abs(h.thermal_resistance_mean - clo) < abs(h.thermal_resistance_mean - h.thermal_resistance_max)*2:
             heads.append((h.name))
 
     return {
