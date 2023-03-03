@@ -39,7 +39,7 @@ class ClothViewSet(mixins.CreateModelMixin,
             user = Token.objects.get(key=request.headers.get("Authorization")[6:]).user
             # рассчитываем тепловое сопротивление
             thermal_resistance_min = (0.0098518285*(33-request.data.get("temperature_max")) - 0.1425)/0.155
-            thermal_resistance_max = (0.0098518285*(33-request.data.get("temperature_min")) - 0.1425)//0.155
+            thermal_resistance_max = (0.0098518285*(33-request.data.get("temperature_min")) - 0.1425)/0.155
             # сохраняем объект
             obj = ClothItem(user=user,
                             name=request.data.get("name"),
