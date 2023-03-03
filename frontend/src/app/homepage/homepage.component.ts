@@ -102,7 +102,7 @@ export class HomepageComponent implements OnInit {
       return;
     }
 
-    this.http.post(this.connector.url + "api/users/", {
+    this.http.post(this.connector.url + "api/auth/users/", {
       email: this.registration.email,
       username: this.registration.nickname,
       password: this.registration.password
